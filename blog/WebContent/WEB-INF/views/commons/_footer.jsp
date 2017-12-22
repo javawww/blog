@@ -16,3 +16,18 @@
 <script src="${webRoot}/resources/js/validate.js"></script>
 <script src="${webRoot}/resources/js/alertMsg.js"></script>
 <script src="${webRoot}/resources/js/admin-scripts.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var url = window.location.href;
+		console.dir(url);
+		if(url.indexOf("article") > 0){
+			$("#article_act").addClass("active");
+		}
+		if(url.indexOf("index") > 0){
+			$("#report_act").addClass("active");
+		}
+		if(url.indexOf("category") > 0){
+			$("#category_act").addClass("active");
+		}
+	})
+</script>

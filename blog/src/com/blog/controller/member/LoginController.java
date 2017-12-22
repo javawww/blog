@@ -63,5 +63,14 @@ public class LoginController extends BaseController{
 		return ResultCode.newRightCode("登陆成功");
 	}
 	
-	
+	/**
+	 * 注销
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "logout",method = RequestMethod.GET)
+	public String logout(HttpServletRequest request) {
+		request.getSession().removeAttribute("member");
+		return "redirect:/";
+	}
 }
