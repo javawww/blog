@@ -1,4 +1,4 @@
-package com.blog.service.impl;
+package com.blog.service.impl.member;
 
 import java.util.List;
 import java.util.Map;
