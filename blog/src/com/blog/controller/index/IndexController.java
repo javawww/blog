@@ -16,6 +16,11 @@ public class IndexController {
 	@Resource
 	private IMemberService memberService;
 	
+	@RequestMapping(value = "")
+	public String defaultIndex() {
+		return "index/index";
+	}
+	
 	@RequestMapping(value = "index")
 	public String index() {
 		return "index/index";
