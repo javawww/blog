@@ -1,6 +1,7 @@
 package com.blog.controller.index;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,12 +18,20 @@ public class IndexController {
 	private IMemberService memberService;
 	
 	@RequestMapping(value = "")
-	public String defaultIndex() {
+	public String defaultIndex(HttpServletRequest request) {
+		Member member = (Member) request.getSession().getAttribute("member");
+		if(member==null) {
+			return "redirect:/member/login";
+		}
 		return "index/index";
 	}
 	
 	@RequestMapping(value = "index")
-	public String index() {
+	public String index(HttpServletRequest request) {
+		Member member = (Member) request.getSession().getAttribute("member");
+		if(member==null) {
+			return "redirect:/member/login";
+		}
 		return "index/index";
 	}
 	

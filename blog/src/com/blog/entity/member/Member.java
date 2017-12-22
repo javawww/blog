@@ -39,6 +39,21 @@ public class Member implements java.io.Serializable{
 		this.username = username;
 		this.password = password;
 	}
+	
+	
+	public Member(Integer id, String nickname, String username, String password, Integer pid) {
+		this.id = id;
+		this.nickname = nickname;
+		this.username = username;
+		this.password = password;
+		this.pid = pid;
+	}
+
+
+	public Member() {
+	}
+
+
 	public Integer getId() {
 		return id;
 	}
