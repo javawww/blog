@@ -2,9 +2,9 @@
 /* dialog样式 */
 .wrapper {
     zoom: 1;
-    width: 620px;
+    width: 630px;
     *width: 626px;
-    height: 350px;
+    height: 380px;
     margin: 0 auto;
     padding: 10px;
     position: relative;

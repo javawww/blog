@@ -11,6 +11,7 @@
 
 	<!-- 静态资源访问 -->
 	<mvc:resources location="/resources/" mapping="/resources/**" />
+	<mvc:resources location="/upload/" mapping="/upload/**" />
 	
 	<!-- 保证 @Controller 起作用 -->
 	<context:component-scan base-package="com.blog.controller">

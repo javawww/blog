@@ -10,10 +10,10 @@
 <!-- aside -->
 <%@ include file="../commons/_aside.jsp" %>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
-      <form action="/Article/checkAll" method="post" >
+      <form action="${webRoot}/Article/checkAll" method="post" >
         <h1 class="page-header">操作</h1>
         <ol class="breadcrumb">
-          <li><a href="add-article.html">增加文章</a></li>
+          <li><a href="article/add-article.html">增加文章</a></li>
         </ol>
         <h1 class="page-header">管理 <span class="badge">7</span></h1>
         <div class="table-responsive">
