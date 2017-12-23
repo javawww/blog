@@ -1,6 +1,7 @@
 package com.blog.entity.type;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.List;
 
 /**
  * QQ群:327947585
@@ -40,6 +41,9 @@ public class Type implements java.io.Serializable{
 	 *排序 
 	 */
 	private Integer sort;
+	
+	//------------------------------------------
+	private List<Type> childs;//子节点
 	
 	/**
 	 * 创建时间
@@ -92,6 +96,14 @@ public class Type implements java.io.Serializable{
 
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
+	}
+
+	public List<Type> getChilds() {
+		return childs;
+	}
+
+	public void setChilds(List<Type> childs) {
+		this.childs = childs;
 	}
 	
 	

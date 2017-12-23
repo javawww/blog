@@ -5,7 +5,7 @@
 	<select id="getById" parameterType="Integer" resultType="com.blog.entity.article.Article">
 		select
 		   *
-		from `member`
+		from `article`
 		where `id` = #{id}
 	</select>
  
@@ -14,95 +14,118 @@
         		<if test="queryMap.id != null and queryMap.id !='' ">
         			and `id` = #{queryMap.id}
         		</if>
-        		<if test="queryMap.pid != null and queryMap.pid !='' ">
-        			and `pid` = #{queryMap.pid}
+        		<if test="queryMap.typeId != null and queryMap.typeId !='' ">
+        			and `typeId` = #{queryMap.typeId}
         		</if>
-        		<if test="queryMap.username != null and queryMap.username !='' ">
-        			and `username` like CONCAT('%', #{queryMap.username}, '%')
+        		<if test="queryMap.typePath != null and queryMap.typePath !='' ">
+        			and `typePath` like CONCAT('%', #{queryMap.typePath}, '%')
         		</if>
-        		<if test="queryMap.password != null and queryMap.password !='' ">
-        			and `password` like CONCAT('%', #{queryMap.password}, '%')
+        		<if test="queryMap.title != null and queryMap.title !='' ">
+        			and `title` like CONCAT('%', #{queryMap.title}, '%')
         		</if>
-        		<if test="queryMap.nickname != null and queryMap.nickname !='' ">
-        			and `nickname` = #{queryMap.nickname}
+        		<if test="queryMap.content != null and queryMap.content !='' ">
+        			and `content` like CONCAT('%', #{queryMap.content}, '%')
         		</if>
+        		<if test="queryMap.author != null and queryMap.author !='' ">
+        			and `author` like CONCAT('%', #{queryMap.author}, '%')
+        		</if>
+        		<if test="queryMap.createId != null and queryMap.createId !='' ">
+        			and `createId` = #{queryMap.createId}
+        		</if>
+        		<if test="queryMap.startDate !=null  and queryMap.startDate !='' "> 
+        			and `createTime` &gt; #{queryMap.startDate}
+        		</if>
+				<if test="queryMap.endDate !=null  and queryMap.endDate !='' "> 
+					and `createTime` &lt; #{queryMap.endDate} 
+				</if>
         </where>
     </sql>
     
-   <select id="getMembers" parameterType="java.util.Map" resultType="com.blog.entity.article.Article">
+   <select id="getArticles" parameterType="java.util.Map" resultType="com.blog.entity.article.Article">
 		select
 		   *
-		from `member`
+		from `article`
 		<include refid="getCondition"/>
 		order by `id` desc
 		<if test="size != null and size &gt; 0">limit #{start},#{size}</if>
 	</select>
 	
-   <select id="getMembersCount" parameterType="java.util.Map" resultType="Integer">
+   <select id="getArticlesCount" parameterType="java.util.Map" resultType="Integer">
 		select
 		   count(*)
-		from `member`
+		from `article`
 		<include refid="getCondition"/>
    </select>
 	
 	<insert id="insert" parameterType="com.blog.entity.article.Article" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-		insert into `member`
+		insert into `article`
 		(
-			`username`,
-			`password`,
-			`nickname`,
-			`pid`
+			`typeId`,
+			`typePath`,
+			`title`,
+			`content`,
+			`author`,
+			`createId`,
+			`createTime`
 		)
 		values
 		(
-			#{username},
-			#{password},
-			#{nickname},
-			#{pid}
+			#{typeId},
+			#{typePath},
+			#{title},
+			#{content},
+			#{author},
+			#{createId},
+			#{createTime}
 		)
 	</insert>
 	
 	<update id="update" parameterType="com.blog.entity.article.Article">
-        update `member`
+        update `article`
     	<set>
-			<if test="username != null">`username`= #{username},</if>
-			<if test="password != null">`password`= #{password},</if>
-			<if test="nickname != null">`nickname`= #{nickname},</if>
-			<if test="pid != null">`pid`= #{pid}</if>
+			<if test="typeId != null">`typeId`= #{typeId},</if>
+			<if test="typePath != null">`typePath`= #{typePath},</if>
+			<if test="title != null">`title`= #{title},</if>
+			<if test="content != null">`content`= #{content},</if>
+			<if test="author != null">`author`= #{author},</if>
+			<if test="createId != null">`createId`= #{createId},</if>
+			<if test="createTime != null">`createTime`= #{createTime}</if>
 	    </set>
         where `id` = #{id}
 	</update>
 	
 	<delete id="delById">
-        delete from `member` where `id` = #{id}
+        delete from `article` where `id` = #{id}
     </delete>
-    
-    <select id="getByUsername" parameterType="String" resultType="com.blog.entity.article.Article">
-    	select
-		   *
-		from `member`
-		where `username` = #{username}
-    </select>
     
     <select id="getByProperties" parameterType="java.util.Map" resultType="com.blog.entity.article.Article">
    	 	select
 		   *
-		from `member`
+		from `article`
 		where 1=1
 		<if test="queryMap.id != null and queryMap.id !='' ">
    			and `id` = #{queryMap.id}
    		</if>
-		<if test="queryMap.username != null and queryMap.username !='' ">
-  			and `username` = #{queryMap.username}
+		<if test="queryMap.typeId != null and queryMap.typeId !='' ">
+  			and `typeId` = #{queryMap.typeId}
   		</if>
-  		<if test="queryMap.password != null and queryMap.password !='' ">
-  			and `password`= #{queryMap.password}
+  		<if test="queryMap.typePath != null and queryMap.typePath !='' ">
+  			and `typePath`= #{queryMap.typePath}
   		</if>
-  		<if test="queryMap.nickname !=null and  queryMap.nickname !='' "> 
-  			and `nickname` = #{queryMap.nickname}
+  		<if test="queryMap.title !=null and  queryMap.title !='' "> 
+  			and `title` = #{queryMap.title}
   		</if>
-		<if test="queryMap.pid !=null  and queryMap.pid !='' "> 
-			and `pid`= #{queryMap.pid} 
+		<if test="queryMap.content !=null  and queryMap.content !='' "> 
+			and `content`= #{queryMap.content} 
+		</if>
+		<if test="queryMap.author !=null  and queryMap.author !='' "> 
+			and `author`= #{queryMap.author} 
+		</if>
+		<if test="queryMap.createId !=null  and queryMap.createId !='' "> 
+			and `createId`= #{queryMap.createId} 
+		</if>
+		<if test="queryMap.createTime !=null  and queryMap.createTime !='' "> 
+			and `createTime`= #{queryMap.createTime} 
 		</if>
     </select>
     

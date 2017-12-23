@@ -11,6 +11,7 @@
 <![endif]-->
 <script src="${webRoot}/resources/js/jquery-2.1.4.min.js"></script>
 <script src="${webRoot}/resources/js/bootstrap.min.js"></script>
+<script src="${webRoot}/resources/js/bootstrap-treeview.js"></script>
 <script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 <script src="https://cdn.bootcss.com/layer/3.1.0/mobile/layer.js"></script>
 <script src="${webRoot}/resources/js/validate.js"></script>

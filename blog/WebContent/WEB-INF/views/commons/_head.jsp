@@ -20,6 +20,8 @@
 <title>博客管理系统</title>
 <link rel="stylesheet" type="text/css"
 	href="${webRoot}/resources/css/bootstrap.min.css">
+<link href="${webRoot}/resources/css/bootstrap-treeview.css"
+	rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="${webRoot}/resources/css/style.css">
 <link rel="stylesheet" type="text/css"

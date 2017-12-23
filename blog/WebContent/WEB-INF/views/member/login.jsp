@@ -6,7 +6,7 @@
 <body class="user-select">
 <div class="container">
   <div class="siteIcon"><img src="${webRoot}/resources/images/icon/icon.png" alt="" data-toggle="tooltip" data-placement="top" title="欢迎使用博客管理系统-快敲网络" draggable="false" /></div>
-  <form autocomplete="off" class="form-signin" id="form">
+  <form autocomplete="off" class="form-signin" id="loginform">
     <h2 class="form-signin-heading">管理员登录</h2>
     <div class="form-group">
 	    <label for="username">用户名</label>
@@ -17,7 +17,7 @@
 	    <input type="password" id="password" name="password" class="form-control" placeholder="请输入密码" autocomplete="off">
 	</div>    
     <div class="form-group">
-	    <a href="javascript:;"><button class="btn btn-lg btn-primary btn-block" type="button" id="signinSubmit">登录</button></a>
+	    <a href="javascript:;"><button class="btn btn-lg btn-primary btn-block" type="button" id="loginsubmit">登录</button></a>
     </div>
   </form>
   <div class="footer">
@@ -40,13 +40,13 @@ $(function(){
 		window.location.reload();
 	});
 	/*登陆按钮*/	
-	$("#signinSubmit").click(function(){
+	$("#loginsubmit").click(function(){
 		if(validate()){
 			$.ajax({
 				dataType:"JSON",
 				type:"POST",
 				url:"${webRoot}/member/dologin",
-				data:$("form").serialize(),
+				data:$("#loginform").serialize(),
 				success:function(data){
 					if(data.code==0){
 						sAlert(data.msg);

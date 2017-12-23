@@ -10,7 +10,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.blog.entity.member.Member;
 import com.blog.service.member.IMemberService;
-
+/**
+ * 
+ * @author Administrator
+ *	http://127.0.0.1/        ##访问首页##
+ *	http://127.0.0.1/index		##访问首页##
+ */
 @Controller
 public class IndexController {
 

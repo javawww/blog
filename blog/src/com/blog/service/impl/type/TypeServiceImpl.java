@@ -48,8 +48,13 @@ public class TypeServiceImpl implements ITypeService {
 	}
 
 	@Override
-	public List<Type> getByProperties(Map<String, String> queryMap) {
+	public List<Type> getByProperties(Map<String, Object> queryMap) {
 		return typeDao.getByProperties(queryMap);
+	}
+
+	@Override
+	public List<Type> getAllTypes() {
+		return typeDao.getAllTypes();
 	}
 
 }

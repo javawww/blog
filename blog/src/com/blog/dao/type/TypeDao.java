@@ -32,5 +32,7 @@ public interface TypeDao {
 	Integer delById(Integer id);
 
 	/**根据对象查询*/
-	List<Type> getByProperties(@Param("queryMap") Map<String, String> queryMap);
+	List<Type> getByProperties(@Param("queryMap") Map<String, Object> queryMap);
+
+	List<Type> getAllTypes();
 }

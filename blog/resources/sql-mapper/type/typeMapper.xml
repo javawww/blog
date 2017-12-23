@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.blog.dao.member.MemberDao">
+<mapper namespace="com.blog.dao.type.TypeDao">
 	
-	<select id="getById" parameterType="Integer" resultType="com.blog.entity.member.Member">
+	<select id="getById" parameterType="Integer" resultType="com.blog.entity.type.Type">
 		select
 		   *
-		from `member`
+		from `type`
 		where `id` = #{id}
+	</select>
+	
+	<select id="getAllTypes" parameterType="Integer" resultType="com.blog.entity.type.Type">
+		select
+		   *
+		from `type`
 	</select>
  
   <sql id="getCondition">
@@ -17,92 +23,97 @@
         		<if test="queryMap.pid != null and queryMap.pid !='' ">
         			and `pid` = #{queryMap.pid}
         		</if>
-        		<if test="queryMap.username != null and queryMap.username !='' ">
-        			and `username` like CONCAT('%', #{queryMap.username}, '%')
+        		<if test="queryMap.ppath != null and queryMap.ppath !='' ">
+        			and `ppath` like CONCAT('%', #{queryMap.ppath}, '%')
         		</if>
-        		<if test="queryMap.password != null and queryMap.password !='' ">
-        			and `password` like CONCAT('%', #{queryMap.password}, '%')
+        		<if test="queryMap.name != null and queryMap.name !='' ">
+        			and `name` like CONCAT('%', #{queryMap.name}, '%')
         		</if>
-        		<if test="queryMap.nickname != null and queryMap.nickname !='' ">
-        			and `nickname` = #{queryMap.nickname}
+        		<if test="queryMap.sort != null and queryMap.sort !='' ">
+        			and `sort` = #{queryMap.sort}
         		</if>
+        		<if test="queryMap.startDate !=null  and queryMap.startDate !='' "> 
+        			and `createTime` &gt; #{queryMap.startDate}
+        		</if>
+				<if test="queryMap.endDate !=null  and queryMap.endDate !='' "> 
+					and `createTime` &lt; #{queryMap.endDate} 
+				</if>
         </where>
     </sql>
     
-   <select id="getMembers" parameterType="java.util.Map" resultType="com.blog.entity.member.Member">
+   <select id="getTypes" parameterType="java.util.Map" resultType="com.blog.entity.type.Type">
 		select
 		   *
-		from `member`
+		from `type`
 		<include refid="getCondition"/>
 		order by `id` desc
 		<if test="size != null and size &gt; 0">limit #{start},#{size}</if>
 	</select>
 	
-   <select id="getMembersCount" parameterType="java.util.Map" resultType="Integer">
+   <select id="getTypesCount" parameterType="java.util.Map" resultType="Integer">
 		select
 		   count(*)
-		from `member`
+		from `type`
 		<include refid="getCondition"/>
    </select>
 	
-	<insert id="insert" parameterType="com.blog.entity.member.Member" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-		insert into `member`
+	<insert id="insert" parameterType="com.blog.entity.type.Type" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into `type`
 		(
-			`username`,
-			`password`,
-			`nickname`,
-			`pid`
+			`pid`,
+			`ppath`,
+			`name`,
+			`sort`,
+			`createTime`
 		)
 		values
 		(
-			#{username},
-			#{password},
-			#{nickname},
-			#{pid}
+			#{pid},
+			#{ppath},
+			#{name},
+			#{sort},
+			#{createTime}
 		)
 	</insert>
 	
-	<update id="update" parameterType="com.blog.entity.member.Member">
-        update `member`
+	<update id="update" parameterType="com.blog.entity.type.Type">
+        update `type`
     	<set>
-			<if test="username != null">`username`= #{username},</if>
-			<if test="password != null">`password`= #{password},</if>
-			<if test="nickname != null">`nickname`= #{nickname},</if>
-			<if test="pid != null">`pid`= #{pid}</if>
+			<if test="pid != null">`pid`= #{pid},</if>
+			<if test="ppath != null">`ppath`= #{ppath},</if>
+			<if test="name != null">`name`= #{name},</if>
+			<if test="sort != null">`sort`= #{sort},</if>
+			<if test="createTime != null">`createTime`= #{createTime}</if>
 	    </set>
         where `id` = #{id}
 	</update>
 	
 	<delete id="delById">
-        delete from `member` where `id` = #{id}
+        delete from `type` where `id` = #{id}
     </delete>
     
-    <select id="getByUsername" parameterType="String" resultType="com.blog.entity.member.Member">
-    	select
-		   *
-		from `member`
-		where `username` = #{username}
-    </select>
-    
-    <select id="getByProperties" parameterType="java.util.Map" resultType="com.blog.entity.member.Member">
+    <select id="getByProperties" parameterType="java.util.Map" resultType="com.blog.entity.type.Type">
    	 	select
 		   *
-		from `member`
+		from `type`
 		where 1=1
 		<if test="queryMap.id != null and queryMap.id !='' ">
    			and `id` = #{queryMap.id}
    		</if>
-		<if test="queryMap.username != null and queryMap.username !='' ">
-  			and `username` = #{queryMap.username}
+		<if test="queryMap.pid != null and queryMap.pid !='' ">
+  			and `pid` = #{queryMap.pid}
   		</if>
-  		<if test="queryMap.password != null and queryMap.password !='' ">
-  			and `password`= #{queryMap.password}
+  		<if test="queryMap.ppath != null and queryMap.ppath !='' ">
+  			and `ppath`= #{queryMap.ppath}
   		</if>
-  		<if test="queryMap.nickname !=null and  queryMap.nickname !='' "> 
-  			and `nickname` = #{queryMap.nickname}
+  		<if test="queryMap.name !=null and  queryMap.name !='' "> 
+  			and `name` = #{queryMap.name}
   		</if>
-		<if test="queryMap.pid !=null  and queryMap.pid !='' "> 
-			and `pid`= #{queryMap.pid} 
+		<if test="queryMap.sort !=null  and queryMap.sort !='' "> 
+			and `sort`= #{queryMap.sort} 
+		</if>
+		<if test="queryMap.createTime !=null  and queryMap.createTime !='' "> 
+			and `createTime`= #{queryMap.createTime} 
 		</if>
     </select>
     
